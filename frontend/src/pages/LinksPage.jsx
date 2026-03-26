@@ -4,14 +4,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import { usePreview } from '../context/PreviewContext';
-import { Button } from '../components/ui/Button';
+import { Button, cn } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 import { Link2, GripVertical } from 'lucide-react';
 import api from '../utils/api';
 
 const linkSchema = z.object({
   id: z.string().optional(),
-  platform: z.string(),
+  platform: z.string().min(1, 'Platform is required'),
   url: z.string().url('Please enter a valid URL'),
   orderIndex: z.number().optional()
 });
@@ -193,7 +193,11 @@ export const LinksPage = () => {
                                         }
                                         setTimeout(() => setLinksPreview(structuredClone(getValues('links') || [])), 0);
                                       }}
-                                      className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none focus:border-primary-500 focus:ring-4 focus:ring-primary-500/20"
+                                      className={cn(
+                                        "w-full rounded-xl border bg-white px-4 py-3 text-slate-900 outline-none transition-all",
+                                        "focus:border-primary-500 focus:ring-4 focus:ring-primary-500/20",
+                                        errors.links?.[index]?.platform ? "border-red-500 focus:border-red-500 focus:ring-red-500/20" : "border-slate-300"
+                                      )}
                                     >
                                       {PLATFORMS.map(p => <option key={p} value={p}>{p}</option>)}
                                     </select>
@@ -206,8 +210,17 @@ export const LinksPage = () => {
                                           setTimeout(() => setLinksPreview(structuredClone(getValues('links') || [])), 0);
                                         }}
                                         placeholder="Enter custom platform name"
-                                        className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none focus:border-primary-500 focus:ring-4 focus:ring-primary-500/20 animate-fade-in"
+                                        className={cn(
+                                          "w-full rounded-xl border bg-white px-4 py-3 text-slate-900 outline-none transition-all animate-fade-in",
+                                          "focus:border-primary-500 focus:ring-4 focus:ring-primary-500/20",
+                                          errors.links?.[index]?.platform ? "border-red-500 focus:border-red-500 focus:ring-red-500/20" : "border-slate-300"
+                                        )}
                                       />
+                                    )}
+                                    {errors.links?.[index]?.platform && (
+                                      <span className="text-sm text-red-500 animate-fade-in mt-1">
+                                        {errors.links[index].platform.message}
+                                      </span>
                                     )}
                                   </div>
                                 );

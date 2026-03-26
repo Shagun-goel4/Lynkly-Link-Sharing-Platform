@@ -29,14 +29,22 @@
   - [ ] Implement auto platform-detection logic dynamically checking URL values.
   - [ ] Integrate `@hello-pangea/dnd` for smooth drag and drop interactions linking items.
 
-- [ ] **Phase 6: Public Profile Dashboard, Sharing & Analytics Layer**
-  - [ ] Build the Public DevLinks Page (Read-only view showing avatar, name, bio, links).
-  - [ ] Add native "Copy Link" to Clipboard helper feature.
-  - [ ] Implement QR Code sharing modal using `qrcode.react`.
-  - [ ] Implement Click Tracking on External Links (dispatching click event tracking endpoints).
-  - [ ] Construct Analytics Dashboard interfaces locally (showing click metrics/popular links).
+- [x] **Phase 6: Public Profile Dashboard, Sharing & Analytics Layer**
+  - [x] Build the Public DevLinks Page (Read-only view showing avatar, name, bio, links).
+  - [x] Add native "Copy Link" to Clipboard helper feature.
+  - [x] Implement QR Code sharing modal using `qrcode.react`.
+  - [x] Implement Click Tracking on External Links (dispatching click event tracking endpoints).
+  - [x] Construct Analytics Dashboard interfaces locally (showing click metrics/popular links).
 
-- [ ] **Phase 7: General Visual Polish & Validation Constraints**
-  - [ ] Verify hover and focus states systematically across all interactive elements based on Mockup.
-  - [ ] Integrate layout responsiveness for phone sizing vs tablet vs desktop dynamically.
-  - [ ] Ensure frontend `react-hook-form` validations cleanly display visual warnings in-UI for incorrect patterns.
+- [x] **Phase 7: General Visual Polish & Validation Constraints**
+  - [x] Implement secure Logout functionality in the Header.
+  - [x] Verify hover and focus states systematically across all interactive elements based on Mockup.
+  - [x] Integrate layout responsiveness for phone sizing vs tablet vs desktop dynamically.
+  - [x] Ensure frontend `react-hook-form` validations cleanly display visual warnings in-UI for incorrect patterns.
+
+- [x] **Phase 8: Deployment Process**
+  - [x] Unify project under a root `package.json` with build/start scripts.
+  - [x] Update frontend `api.js` to dynamically use production vs development baseURLs.
+  - [x] Configure Express backend to conditionally serve the React static `dist` folder.
+  - [x] Deploy frontend to Netlify.
+  - [x] Create `render.yaml` blueprint for backend deployment.

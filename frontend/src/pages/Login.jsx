@@ -39,7 +39,7 @@ export const Login = () => {
     <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-6 font-sans">
       <div className="flex items-center gap-2 text-primary-600 font-bold text-3xl mb-12">
         <Link2 className="w-10 h-10 p-2 bg-primary-600 text-white rounded-xl shadow-md" />
-        <span className="tracking-tight">devlinks</span>
+        <span className="tracking-tight">Lynkly</span>
       </div>
 
       <div className="w-full max-w-md bg-white rounded-3xl p-8 md:p-10 shadow-[0_4px_24px_rgba(0,0,0,0.02)] border border-slate-100 animate-slide-up">
@@ -49,21 +49,21 @@ export const Login = () => {
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          <Input 
-            label="Email address" 
-            placeholder="e.g. alex@email.com" 
-            icon={Mail} 
-            error={errors.email?.message} 
-            {...register('email')} 
+          <Input
+            label="Email address"
+            placeholder="e.g. alex@email.com"
+            icon={Mail}
+            error={errors.email?.message}
+            {...register('email')}
           />
-          
-          <Input 
-            type="password" 
-            label="Password" 
-            placeholder="Enter your password" 
-            icon={Lock} 
-            error={errors.password?.message} 
-            {...register('password')} 
+
+          <Input
+            type="password"
+            label="Password"
+            placeholder="Enter your password"
+            icon={Lock}
+            error={errors.password?.message}
+            {...register('password')}
           />
 
           {globalError && <p className="text-red-500 text-sm font-medium animate-fade-in">{globalError}</p>}

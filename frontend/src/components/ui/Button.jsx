@@ -14,7 +14,7 @@ export function Button({
   isLoading, 
   ...props 
 }) {
-  const baseStyles = "inline-flex items-center justify-center rounded-xl font-semibold transition-all duration-200 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none";
+  const baseStyles = "inline-flex items-center justify-center rounded-xl font-semibold transition-all duration-200 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/30";
   
   const variants = {
     primary: "bg-primary-600 text-white hover:bg-primary-700 hover:shadow-lg hover:-translate-y-0.5 shadow-primary-500/30",

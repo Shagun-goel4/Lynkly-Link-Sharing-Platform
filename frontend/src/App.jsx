@@ -6,6 +6,8 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 import { MainLayout } from './layouts/MainLayout';
 import { LinksPage } from './pages/LinksPage';
 import { ProfilePage } from './pages/ProfilePage';
+import { AnalyticsPage } from './pages/AnalyticsPage';
+import { PublicProfile } from './pages/PublicProfile';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 
@@ -14,9 +16,10 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-          {/* Public Auth Routes */}
+          {/* Public Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/u/:userId" element={<PublicProfile />} />
 
           {/* Protected Routes inside MainLayout */}
           <Route element={<ProtectedRoute />}>
@@ -25,6 +28,7 @@ function App() {
                 <Route index element={<Navigate to="/links" replace />} />
                 <Route path="links" element={<LinksPage />} />
                 <Route path="profile" element={<ProfilePage />} />
+                <Route path="analytics" element={<AnalyticsPage />} />
               </Route>
             </Route>
           </Route>

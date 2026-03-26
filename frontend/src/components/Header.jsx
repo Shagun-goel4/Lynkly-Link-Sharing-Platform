@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Link2, UserCircle, Eye } from 'lucide-react';
+import { Link2, UserCircle, BarChart2, Share2, LogOut } from 'lucide-react';
 import { Button } from './ui/Button';
 import { cn } from './ui/Button';
+import { ShareModal } from './ShareModal';
+import { useAuth } from '../context/AuthContext';
 
 export const Header = () => {
   const location = useLocation();
+  const { logout } = useAuth();
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
   const navItemClass = (path) => cn(
     "flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-200",
-    location.pathname === path 
-      ? "bg-primary-100 text-primary-700" 
+    location.pathname === path
+      ? "bg-primary-100 text-primary-700"
       : "text-slate-500 hover:text-primary-600 hover:bg-primary-50"
   );
 
@@ -18,7 +22,7 @@ export const Header = () => {
     <header className="bg-white rounded-2xl p-4 flex items-center justify-between shadow-[0_2px_10px_rgba(0,0,0,0.02)] border border-slate-100 sticky top-6 z-50">
       <div className="flex items-center gap-2 px-2 text-primary-600 font-bold text-xl tracking-tight">
         <Link2 className="w-8 h-8 p-1.5 bg-primary-600 text-white rounded-lg" />
-        <span className="hidden md:block">devlinks</span>
+        <span className="hidden md:block">Lynkly</span>
       </div>
 
       <nav className="flex items-center gap-2">
@@ -30,14 +34,32 @@ export const Header = () => {
           <UserCircle size={20} />
           <span className="hidden md:block">Profile Details</span>
         </Link>
+        <Link to="/analytics" className={navItemClass('/analytics')}>
+          <BarChart2 size={20} />
+          <span className="hidden md:block">Analytics</span>
+        </Link>
       </nav>
 
-      <Button variant="outline" className="hidden md:flex">
-        Preview
-      </Button>
-      <Button variant="outline" size="sm" className="md:hidden px-4">
-        <Eye size={20} />
-      </Button>
+      <div className="flex items-center gap-2">
+        <Button variant="outline" className="hidden md:flex gap-2" onClick={() => setIsShareModalOpen(true)}>
+          <Share2 size={16} />
+          Share Link
+        </Button>
+        <Button variant="outline" size="sm" className="md:hidden px-4" onClick={() => setIsShareModalOpen(true)}>
+          <Share2 size={20} />
+        </Button>
+
+        {/* Logout Button */}
+        <Button variant="ghost" className="hidden md:flex gap-2 text-slate-500 hover:text-red-600 hover:bg-red-50 transition-colors" onClick={logout}>
+          <LogOut size={16} />
+          Logout
+        </Button>
+        <Button variant="ghost" size="sm" className="md:hidden px-4 text-slate-500 hover:text-red-600 hover:bg-red-50 transition-colors" onClick={logout}>
+          <LogOut size={20} />
+        </Button>
+      </div>
+
+      <ShareModal isOpen={isShareModalOpen} onClose={() => setIsShareModalOpen(false)} />
     </header>
   );
 };
