@@ -127,8 +127,8 @@ export const LinksPage = () => {
   return (
     <div className="flex flex-col h-full animate-fade-in relative pb-10 md:pb-0">
       <div className="flex flex-col gap-2 mb-10">
-        <h1 className="text-[32px] font-bold text-slate-900 leading-tight mt-0">Customize your links</h1>
-        <p className="text-slate-500 text-base">Add/edit/remove links below and then share all your profiles with the world!</p>
+        <h1 className="text-[32px] font-bold text-white leading-tight mt-0">Customize your links</h1>
+        <p className="text-slate-400 text-base">Add/edit/remove links below and then share all your profiles with the world!</p>
       </div>
 
       <Button 
@@ -146,9 +146,9 @@ export const LinksPage = () => {
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col flex-1 gap-6">
         
         {fields.length === 0 ? (
-           <div className="p-8 border-2 border-dashed border-slate-200 rounded-2xl flex flex-col items-center justify-center text-center gap-4 bg-slate-50/50 my-6">
-             <h2 className="text-2xl font-bold text-slate-700 mt-6">Let's get you started</h2>
-             <p className="text-slate-500 max-w-sm mb-6">Use the "Add new link" button to get started. Once you have more than one link, you can reorder and edit them.</p>
+           <div className="p-8 border border-dashed border-white/20 rounded-2xl flex flex-col items-center justify-center text-center gap-4 bg-white/5 my-6">
+             <h2 className="text-2xl font-bold text-white mt-6">Let's get you started</h2>
+             <p className="text-slate-400 max-w-sm mb-6">Use the "Add new link" button to get started. Once you have more than one link, you can reorder and edit them.</p>
           </div>
         ) : (
           <DragDropContext onDragEnd={handleDragEnd}>
@@ -158,23 +158,23 @@ export const LinksPage = () => {
                   {fields.map((field, index) => (
                     <Draggable key={field.id || `temp-${index}`} draggableId={field.id || `temp-${index}`} index={index}>
                       {(provided, snapshot) => (
-                         <div 
+                        <div 
                           ref={provided.innerRef}
                           {...provided.draggableProps}
-                          className={`bg-slate-50 p-5 rounded-2xl flex flex-col gap-4 border border-slate-100 transition-shadow ${snapshot.isDragging ? 'shadow-xl ring-2 ring-primary-500 z-50' : 'shadow-sm z-0'}`}
+                          className={`glass-card p-5 rounded-2xl flex flex-col gap-4 transition-shadow ${snapshot.isDragging ? 'shadow-[0_0_30px_rgba(20,184,166,0.2)] ring-2 ring-primary-500 z-50' : 'shadow-glass z-0'}`}
                         >
-                          <div className="flex items-center justify-between text-slate-500 font-semibold mb-1">
-                            <div className="flex items-center gap-2 cursor-grab active:cursor-grabbing p-1 -ml-1 hover:text-primary-600 transition-colors" {...provided.dragHandleProps}>
+                          <div className="flex items-center justify-between text-slate-400 font-semibold mb-1">
+                            <div className="flex items-center gap-2 cursor-grab active:cursor-grabbing p-1 -ml-1 hover:text-white transition-colors" {...provided.dragHandleProps}>
                               <GripVertical size={16} />
                               <span>Link #{index + 1}</span>
                             </div>
-                            <button type="button" onClick={() => remove(index)} className="text-slate-400 font-normal hover:text-red-500 transition-colors text-sm">
+                            <button type="button" onClick={() => remove(index)} className="text-slate-500 font-normal hover:text-red-400 transition-colors text-sm">
                               Remove
                             </button>
                           </div>
 
                           <div className="flex flex-col gap-1.5">
-                            <label className="text-xs text-slate-600 font-medium">Platform</label>
+                            <label className="text-xs text-slate-400 font-medium">Platform</label>
                             <Controller
                               control={control}
                               name={`links.${index}.platform`}
@@ -194,9 +194,9 @@ export const LinksPage = () => {
                                         setTimeout(() => setLinksPreview(structuredClone(getValues('links') || [])), 0);
                                       }}
                                       className={cn(
-                                        "w-full rounded-xl border bg-white px-4 py-3 text-slate-900 outline-none transition-all",
+                                        "w-full rounded-xl border bg-dark-bg/50 px-4 py-3 text-white outline-none transition-all",
                                         "focus:border-primary-500 focus:ring-4 focus:ring-primary-500/20",
-                                        errors.links?.[index]?.platform ? "border-red-500 focus:border-red-500 focus:ring-red-500/20" : "border-slate-300"
+                                        errors.links?.[index]?.platform ? "border-red-500 focus:border-red-500 focus:ring-red-500/20" : "border-white/10"
                                       )}
                                     >
                                       {PLATFORMS.map(p => <option key={p} value={p}>{p}</option>)}
@@ -211,9 +211,9 @@ export const LinksPage = () => {
                                         }}
                                         placeholder="Enter custom platform name"
                                         className={cn(
-                                          "w-full rounded-xl border bg-white px-4 py-3 text-slate-900 outline-none transition-all animate-fade-in",
+                                          "w-full rounded-xl border bg-dark-bg/50 px-4 py-3 text-white outline-none transition-all animate-fade-in",
                                           "focus:border-primary-500 focus:ring-4 focus:ring-primary-500/20",
-                                          errors.links?.[index]?.platform ? "border-red-500 focus:border-red-500 focus:ring-red-500/20" : "border-slate-300"
+                                          errors.links?.[index]?.platform ? "border-red-500 focus:border-red-500 focus:ring-red-500/20" : "border-white/10"
                                         )}
                                       />
                                     )}
@@ -229,7 +229,7 @@ export const LinksPage = () => {
                           </div>
 
                           <div className="flex flex-col gap-1.5">
-                            <label className="text-xs text-slate-600 font-medium">Link</label>
+                            <label className="text-xs text-slate-400 font-medium">Link</label>
                             <Input 
                               icon={Link2}
                               placeholder="e.g. https://www.github.com/johnsmith"
@@ -254,8 +254,8 @@ export const LinksPage = () => {
         )}
 
         {(isDirty || saveSuccess) && (
-        <div className="mt-auto pt-6 border-t border-slate-200 flex flex-col md:flex-row items-center justify-end gap-4 pb-2 animate-slide-up">
-           {saveSuccess && <span className="text-slate-500 font-medium animate-fade-in flex items-center gap-2">
+        <div className="mt-auto pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-end gap-4 pb-2 animate-slide-up">
+           {saveSuccess && <span className="text-slate-400 font-medium animate-fade-in flex items-center gap-2">
             <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
             Successfully saved!
           </span>}

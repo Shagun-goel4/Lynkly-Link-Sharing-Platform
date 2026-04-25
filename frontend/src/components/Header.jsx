@@ -14,15 +14,15 @@ export const Header = () => {
   const navItemClass = (path) => cn(
     "flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-200",
     location.pathname === path
-      ? "bg-primary-100 text-primary-700"
-      : "text-slate-500 hover:text-primary-600 hover:bg-primary-50"
+      ? "bg-primary-500/10 text-primary-400"
+      : "text-slate-400 hover:text-white hover:bg-white/5"
   );
 
   return (
-    <header className="bg-white rounded-2xl p-4 flex items-center justify-between shadow-[0_2px_10px_rgba(0,0,0,0.02)] border border-slate-100 sticky top-6 z-50">
-      <div className="flex items-center gap-2 px-2 text-primary-600 font-bold text-xl tracking-tight">
-        <Link2 className="w-8 h-8 p-1.5 bg-primary-600 text-white rounded-lg" />
-        <span className="hidden md:block">Lynkly</span>
+    <header className="glass-card rounded-2xl p-4 flex items-center justify-between sticky top-6 z-50">
+      <div className="flex items-center gap-2 px-2 text-white font-bold text-xl tracking-tight">
+        <Link2 className="w-8 h-8 p-1.5 bg-primary-500 text-white rounded-lg shadow-[0_0_15px_rgba(20,184,166,0.3)]" />
+        <span className="hidden md:block">Linkly</span>
       </div>
 
       <nav className="flex items-center gap-2">
@@ -50,11 +50,11 @@ export const Header = () => {
         </Button>
 
         {/* Logout Button */}
-        <Button variant="ghost" className="hidden md:flex gap-2 text-slate-500 hover:text-red-600 hover:bg-red-50 transition-colors" onClick={logout}>
+        <Button variant="ghost" className="hidden md:flex gap-2 text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition-colors" onClick={logout}>
           <LogOut size={16} />
           Logout
         </Button>
-        <Button variant="ghost" size="sm" className="md:hidden px-4 text-slate-500 hover:text-red-600 hover:bg-red-50 transition-colors" onClick={logout}>
+        <Button variant="ghost" size="sm" className="md:hidden px-4 text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition-colors" onClick={logout}>
           <LogOut size={20} />
         </Button>
       </div>

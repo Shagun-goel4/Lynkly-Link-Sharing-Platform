@@ -10,6 +10,7 @@ import { AnalyticsPage } from './pages/AnalyticsPage';
 import { PublicProfile } from './pages/PublicProfile';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
+import { LandingPage } from './pages/LandingPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <AuthProvider>
         <Routes>
           {/* Public Routes */}
+          <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/u/:userId" element={<PublicProfile />} />
@@ -24,11 +26,10 @@ function App() {
           {/* Protected Routes inside MainLayout */}
           <Route element={<ProtectedRoute />}>
             <Route element={<PreviewProvider><Outlet /></PreviewProvider>}>
-              <Route path="/" element={<MainLayout />}>
-                <Route index element={<Navigate to="/links" replace />} />
-                <Route path="links" element={<LinksPage />} />
-                <Route path="profile" element={<ProfilePage />} />
-                <Route path="analytics" element={<AnalyticsPage />} />
+              <Route element={<MainLayout />}>
+                <Route path="/links" element={<LinksPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/analytics" element={<AnalyticsPage />} />
               </Route>
             </Route>
           </Route>

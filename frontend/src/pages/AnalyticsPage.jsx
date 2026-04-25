@@ -28,12 +28,12 @@ export const AnalyticsPage = () => {
     <div className="w-full h-full flex flex-col">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Analytics Dashboard</h1>
-          <p className="text-slate-500 mt-2">Track link engagement and performance over time.</p>
+          <h1 className="text-3xl font-bold text-white tracking-tight">Analytics Dashboard</h1>
+          <p className="text-slate-400 mt-2">Track link engagement and performance over time.</p>
         </div>
         <button
           onClick={fetchAnalytics}
-          className="p-3 text-slate-500 hover:text-primary-600 hover:bg-primary-50 rounded-xl transition-colors"
+          className="p-3 text-slate-400 hover:text-primary-400 hover:bg-primary-500/10 rounded-xl transition-colors"
           title="Refresh Data"
         >
           <RefreshCw size={20} className={loading ? 'animate-spin' : ''} />
@@ -41,7 +41,7 @@ export const AnalyticsPage = () => {
       </div>
 
       {error ? (
-        <div className="p-4 bg-red-50 text-red-600 rounded-xl border border-red-100 flex items-center gap-2">
+        <div className="p-4 bg-red-500/10 text-red-400 rounded-xl border border-red-500/20 flex items-center gap-2">
           {error}
         </div>
       ) : loading && data.popularLinks.length === 0 ? (
@@ -72,27 +72,27 @@ export const AnalyticsPage = () => {
           </div>
 
           {/* Popular Links Table */}
-          <div className="bg-white border text-left border-slate-100 rounded-3xl shadow-[0_4px_24px_rgba(0,0,0,0.02)] overflow-hidden flex-1 flex flex-col">
-            <div className="p-6 border-b border-slate-100 flex items-center gap-3">
-              <BarChart3 className="text-primary-600" size={24} />
-              <h2 className="text-xl font-bold text-slate-900">Link Performance</h2>
+          <div className="glass-card text-left border border-white/10 rounded-3xl overflow-hidden flex-1 flex flex-col">
+            <div className="p-6 border-b border-white/10 flex items-center gap-3">
+              <BarChart3 className="text-primary-500" size={24} />
+              <h2 className="text-xl font-bold text-white">Link Performance</h2>
             </div>
 
             <div className="overflow-x-auto flex-1">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="bg-slate-50 border-b border-slate-100 text-slate-500 text-sm font-semibold uppercase tracking-wider">
+                  <tr className="bg-white/5 border-b border-white/10 text-slate-400 text-sm font-semibold uppercase tracking-wider">
                     <th className="px-6 py-4">Platform</th>
                     <th className="px-6 py-4">Destination URL</th>
                     <th className="px-6 py-4 text-right">Total Clicks</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100">
+                <tbody className="divide-y divide-white/10">
                   {data.popularLinks.length > 0 ? (
                     data.popularLinks.map((link, idx) => (
-                      <tr key={link.id} className="hover:bg-slate-50/50 text-slate-700 transition-colors">
+                      <tr key={link.id} className="hover:bg-white/5 text-slate-300 transition-colors">
                         <td className="px-6 py-4 font-medium flex items-center gap-3">
-                          <span className="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-xs text-slate-500">
+                          <span className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-xs text-slate-400">
                             {idx + 1}
                           </span>
                           {link.platform}
@@ -102,20 +102,20 @@ export const AnalyticsPage = () => {
                             href={link.url}
                             target="_blank"
                             rel="noreferrer"
-                            className="truncate block hover:text-primary-600 transition-colors flex items-center gap-1 group"
+                            className="truncate block hover:text-primary-400 transition-colors flex items-center gap-1 group"
                           >
                             <span className="truncate">{link.url}</span>
                             <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
                           </a>
                         </td>
-                        <td className="px-6 py-4 text-right font-bold text-slate-900 text-lg">
+                        <td className="px-6 py-4 text-right font-bold text-white text-lg">
                           {link.clickCount}
                         </td>
                       </tr>
                     ))
                   ) : (
                     <tr>
-                      <td colSpan="3" className="px-6 py-12 text-center text-slate-500">
+                      <td colSpan="3" className="px-6 py-12 text-center text-slate-400">
                         No links available or no clicks recorded yet.
                       </td>
                     </tr>
@@ -131,17 +131,17 @@ export const AnalyticsPage = () => {
 };
 
 const MetricCard = ({ title, value, icon, trend, subtitle }) => (
-  <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-[0_4px_24px_rgba(0,0,0,0.02)] flex flex-col gap-4 hover:shadow-lg transition-shadow">
+  <div className="glass-card p-6 rounded-3xl border border-white/10 flex flex-col gap-4 hover:shadow-[0_8px_32px_rgba(20,184,166,0.15)] transition-shadow">
     <div className="flex items-center justify-between">
-      <h3 className="text-slate-500 font-medium">{title}</h3>
-      <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center">
+      <h3 className="text-slate-400 font-medium">{title}</h3>
+      <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center border border-white/5">
         {icon}
       </div>
     </div>
     <div className="flex items-baseline gap-2">
-      <span className="text-4xl font-bold text-slate-900 tracking-tight">{value}</span>
-      {trend && <span className="text-sm font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">{trend}</span>}
-      {subtitle && <span className="text-sm text-slate-500">{subtitle}</span>}
+      <span className="text-4xl font-bold text-white tracking-tight">{value}</span>
+      {trend && <span className="text-sm font-medium text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full">{trend}</span>}
+      {subtitle && <span className="text-sm text-slate-400">{subtitle}</span>}
     </div>
   </div>
 );

@@ -1,12 +1,13 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { getFallbackAvatar } from '../utils/avatar';
 
 export const MobileMockup = ({ profile = {}, links = [] }) => {
   return (
-    <div className="relative w-[300px] h-[600px] rounded-[50px] border-[12px] border-[#131118] bg-white shadow-2xl overflow-hidden flex flex-col items-center p-6 pb-12 ring-[1px] ring-slate-200 mx-auto">
+    <div className="relative w-[340px] h-[680px] rounded-[50px] border-[14px] border-dark-card bg-dark-bg shadow-[0_0_40px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col items-center p-6 pb-12 ring-[1px] ring-white/10 mx-auto">
       {/* Notch */}
-      <div className="absolute top-0 w-[45%] h-[24px] bg-[#131118] rounded-b-3xl z-10 flex justify-center items-end pb-1">
-         <div className="w-12 h-1.5 bg-slate-800 rounded-full"></div>
+      <div className="absolute top-0 w-[45%] h-[24px] bg-dark-card rounded-b-3xl z-10 flex justify-center items-end pb-1">
+         <div className="w-12 h-1.5 bg-dark-bg rounded-full"></div>
       </div>
       
       {/* Content */}
@@ -14,25 +15,23 @@ export const MobileMockup = ({ profile = {}, links = [] }) => {
         
         {/* Profile Details Area */}
         <div className="flex flex-col items-center gap-4 w-full">
-          {profile.avatarUrl ? (
-            <img src={profile.avatarUrl} alt="Avatar" className="w-[104px] h-[104px] rounded-full object-cover border-4 border-primary-600 shadow-xl" />
-          ) : (
-             <div className="w-[104px] h-[104px] rounded-full bg-slate-100 border-4 border-slate-50 shadow-inner flex items-center justify-center text-slate-300">
-               {/* Empty Placeholder */}
-             </div>
-          )}
+          <img 
+            src={profile.avatarUrl || getFallbackAvatar(profile.firstName, profile.lastName)} 
+            alt="Avatar" 
+            className="w-[120px] h-[120px] rounded-full object-cover border-4 border-primary-500 shadow-[0_0_20px_rgba(20,184,166,0.3)]" 
+          />
           
           <div className="flex flex-col items-center gap-2 w-full px-2 text-center">
             {profile.firstName || profile.lastName ? (
-              <h2 className="text-xl font-bold text-slate-900 truncate w-full">{profile.firstName} {profile.lastName}</h2>
+              <h2 className="text-2xl font-bold text-white truncate w-full">{profile.firstName} {profile.lastName}</h2>
             ) : (
-              <div className="h-4 bg-slate-200 rounded-full w-[160px] animate-pulse"></div>
+              <div className="h-4 bg-white/10 rounded-full w-[160px] animate-pulse"></div>
             )}
             
             {profile.email ? (
-              <p className="text-sm text-slate-500 truncate w-full">{profile.email}</p>
+              <p className="text-base text-slate-400 truncate w-full">{profile.email}</p>
             ) : (
-              <div className="h-2 bg-slate-200 rounded-full w-[72px] mt-1 animate-pulse"></div>
+              <div className="h-2 bg-white/10 rounded-full w-[72px] mt-1 animate-pulse"></div>
             )}
           </div>
         </div>
@@ -46,7 +45,7 @@ export const MobileMockup = ({ profile = {}, links = [] }) => {
                 href={link.url}
                 target="_blank"
                 rel="noreferrer"
-                className="w-full h-[56px] rounded-xl flex items-center justify-between px-4 text-white font-medium shadow-sm transition-transform hover:scale-[1.02] bg-slate-800"
+                className="w-full h-[60px] rounded-2xl flex items-center justify-between px-5 text-white font-semibold text-[15px] shadow-sm transition-transform hover:scale-[1.02] bg-slate-800"
                 style={{ backgroundColor: getPlatformColor(link.platform), color: getPlatformTextColor(link.platform) }}
               >
                 <div className="flex items-center gap-2">
@@ -58,7 +57,7 @@ export const MobileMockup = ({ profile = {}, links = [] }) => {
           ) : (
             <>
               {[...Array(5)].map((_, i) => (
-                <div key={i} className="w-full h-[48px] rounded-xl bg-slate-100 animate-pulse"></div>
+                <div key={i} className="w-full h-[60px] rounded-2xl bg-white/5 animate-pulse"></div>
               ))}
             </>
           )}

@@ -36,16 +36,20 @@ export const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-6 font-sans">
-      <div className="flex items-center gap-2 text-primary-600 font-bold text-3xl mb-12">
-        <Link2 className="w-10 h-10 p-2 bg-primary-600 text-white rounded-xl shadow-md" />
-        <span className="tracking-tight">Lynkly</span>
+    <div className="min-h-screen bg-dark-bg flex flex-col items-center justify-center p-6 font-sans relative overflow-hidden">
+      {/* Background Gradients */}
+      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary-600/20 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-primary-800/20 blur-[120px] pointer-events-none" />
+
+      <div className="flex items-center gap-2 text-white font-bold text-3xl mb-12 relative z-10">
+        <Link2 className="w-10 h-10 p-2 bg-primary-500 text-white rounded-xl shadow-[0_0_20px_rgba(20,184,166,0.3)]" />
+        <span className="tracking-tight">Linkly</span>
       </div>
 
-      <div className="w-full max-w-md bg-white rounded-3xl p-8 md:p-10 shadow-[0_4px_24px_rgba(0,0,0,0.02)] border border-slate-100 animate-slide-up">
+      <div className="w-full max-w-md glass-card rounded-3xl p-8 md:p-10 relative z-10 animate-slide-up">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-900 mb-2">Login</h1>
-          <p className="text-slate-500">Add your details below to get back into the app</p>
+          <h1 className="text-3xl font-bold text-white mb-2">Login</h1>
+          <p className="text-slate-400">Add your details below to get back into the app</p>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -73,8 +77,8 @@ export const Login = () => {
           </Button>
         </form>
 
-        <p className="mt-8 text-center text-slate-500">
-          Don't have an account? <Link to="/register" className="text-primary-600 hover:text-primary-700 font-semibold transition-colors">Create account</Link>
+        <p className="mt-8 text-center text-slate-400">
+          Don't have an account? <Link to="/register" className="text-primary-400 hover:text-primary-300 font-semibold transition-colors">Create account</Link>
         </p>
       </div>
     </div>
